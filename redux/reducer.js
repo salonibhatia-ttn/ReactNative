@@ -1,6 +1,8 @@
 import {ActionTypes} from './types';
 const intialState = {
   products: [],
+  filteredProducts: [],
+  categories: [],
   loading: true,
 };
 const productDetailState = {
@@ -14,14 +16,32 @@ export const productsReducer = (state = intialState, {type, payload}) => {
       return {
         ...state,
         products: payload,
-        loading: false,
+        filteredProducts: payload,
       };
     case ActionTypes.FETCH_PRODUCTS:
+      const cats = payload
+        .map(item => item.category)
+        .filter((item, index, arr) => arr.indexOf(item) === index);
+      console.log(33, cats);
       return {
         ...state,
         products: payload,
+        filteredProducts: payload,
+        categories: cats,
         loading: false,
       };
+    case 'SET_CATEGORIES':
+      return {...state, categories: payload};
+    case 'FILTER_PRODUCTS':
+      if (payload === 'Filter') {
+        return {...state, products: state.filteredProducts};
+      } else {
+        const prods = state.filteredProducts.filter(
+          item => item.category === payload,
+        );
+        console.log(44, prods);
+        return {...state, products: prods};
+      }
     default:
       return state;
   }

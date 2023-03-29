@@ -8,7 +8,7 @@ const ProductComponent = () => {
   const products = useSelector(state => state.allProducts.products);
   const renderList = products.map(product => {
     const {id, title, image, price, category} = product;
-    // console.log(id, title, price, category, image, rating);
+    // console.log(id, title, price, category, image);
     return (
       <TouchableOpacity
         key={id}
@@ -19,8 +19,7 @@ const ProductComponent = () => {
           flexDirection: 'row',
         }}
         onPress={() => navigation.navigate('ProductDetail', {id})}>
-        <View style={{flex: 1}}>
-          {/* <Link to={`/product/${id}`}> */}
+        <View style={{flex: 2}}>
           <Image style={{width: 90, height: 90}} source={{uri: image}} />
           <View style={{flex: 2, paddingLeft: 10}}>
             <Text

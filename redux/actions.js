@@ -10,6 +10,12 @@ export const fetchProduct = id => async dispatch => {
   const response = await fakestoreapi.get(`/products/${id}`);
   dispatch({type: ActionTypes.SELECTED_PRODUCT, payload: response.data});
 };
+export const filterProducts = filterBy => {
+  return {
+    type: 'FILTER_PRODUCTS',
+    payload: filterBy,
+  };
+};
 
 export const selectedProduct = product => {
   return {

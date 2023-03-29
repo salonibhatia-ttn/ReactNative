@@ -13,7 +13,7 @@ const ProductDetail = ({route}) => {
 
   const product = useSelector(state => state.product);
   const dispatch = useDispatch();
-  console.log(product);
+  console.log(88, product);
 
   useEffect(() => {
     dispatch(fetchProduct(id));
